@@ -67,11 +67,55 @@
     .card .body{padding:1rem}
     .card h3{margin:.2rem 0 .4rem}
     .chip{display:inline-block;padding:.2rem .6rem;border-radius:999px;background:#fff6df;color:#7a5a17;font-weight:800;font-size:.8rem}
-    /* Gallery */
-    .masonry{columns:1;column-gap:1rem}
-    .masonry img{width:100%;border-radius:14px;margin:0 0 1rem;break-inside:avoid}
-    @media(min-width:700px){.masonry{columns:2}}
-    @media(min-width:1024px){.masonry{columns:3}}
+   /* ===== גלריה רספונסיבית: תמונות + וידאו ===== */
+.gallery{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  padding-block: 8px;
+}
+
+.gallery > img,
+.gallery > video{
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;        /* יחס ברירת מחדל בדסקטופ */
+  object-fit: cover;          /* ממלא מבלי לעוות */
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(2,6,23,.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: block;
+}
+
+/* מובייל: פריסה נוחה ומרובעת */
+@media (max-width: 700px){
+  .gallery{
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  .gallery > img,
+  .gallery > video{
+    aspect-ratio: 1 / 1;      /* מרובע במובייל */
+  }
+}
+
+/* הובר עדין (בעכבר בלבד) */
+@media (hover:hover){
+  .gallery > img:hover,
+  .gallery > video:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(2,6,23,.12);
+  }
+}
+
+/* פחות תנועה למי שמעדיף */
+@media (prefers-reduced-motion: reduce){
+  .gallery > img,
+  .gallery > video{
+    transition: none;
+  }
+}
+
     /* CTA strip */
     .cta{background:linear-gradient(90deg,var(--brand),#ffd27f);color:#1f2937;border-radius:22px;padding:1.2rem 1.4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
     .cta .txt{font-size:1.1rem}
@@ -274,7 +318,7 @@
       <p class="sec-sub">מבחר ברים בהתאמה מלאה לאופי האירוע, לקהל ולתקציב.</p>
       <div class="grid cols-3">
         <article class="card">
-          <img class="thumb" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1400&auto=format&fit=crop" alt="מוחיטו טרי עם נענע וליים" loading="lazy" />
+        
           <div class="body">
             <h3>בר קוקטיילים</h3>
             <p>קוקטיילים טרופיים וקלאסיקות: מוחיטו, פינה קולדה, מרגריטה ועוד – כולל גרסאות ללא אלכוהול.</p>
@@ -282,7 +326,7 @@
           </div>
         </article>
         <article class="card">
-          <img class="thumb" src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=1400&auto=format&fit=crop" alt="אולד פאשנד וויסקי עם קליפת תפוז" loading="lazy" />
+        
           <div class="body">
             <h3>בר אלכוהול</h3>
             <p>בירות, וויסקי, וודקה, טקילה, יינות וליקרים – רמות מדף וגמישות בתקציב, כולל פרימיום.</p>
@@ -290,7 +334,7 @@
           </div>
         </article>
         <article class="card">
-          <img class="thumb" src="https://images.unsplash.com/photo-1497534446932-c925b458314e?q=80&w=1400&auto=format&fit=crop" alt="שייק מנגו-קוקוס טרופי" loading="lazy" />
+         
           <div class="body">
             <h3>בר פרי־שייק</h3>
             <p>שייקים מפירות טריים, חלב קוקוס ושילובים טבעוניים. מושלם לקיץ ואירועי צהריים.</p>
@@ -298,7 +342,7 @@
           </div>
         </article>
         <article class="card">
-          <img class="thumb" src="https://images.unsplash.com/photo-1536935339748-8203e8be8bd6?q=80&w=1400&auto=format&fit=crop" alt="פונץ׳ פירות צבעוני בקערה" loading="lazy" />
+        
           <div class="body">
             <h3>בר פונצ׳ים</h3>
             <p>קערות פונץ׳ צבעוניות להגשה עצמית – פתרון מהיר ומרענן לכמויות גדולות.</p>
@@ -306,7 +350,7 @@
           </div>
         </article>
         <article class="card">
-          <img class="thumb" src="https://images.unsplash.com/photo-1613478223719-5f4a7e59d3a1?q=80&w=1400&auto=format&fit=crop" alt="כוסות ממותגות עם לוגו" loading="lazy" />
+          
           <div class="body">
             <h3>מיתוג ולוגו על הכוסות</h3>
             <p>מיתוג מלא של הדוכן והכוסות – עובד מעולה לאירועי חברה ובר/בת מצווה.</p>
@@ -314,7 +358,7 @@
           </div>
         </article>
         <article class="card">
-          <img class="thumb" src="https://images.unsplash.com/photo-1627662057411-74a53ce38af7?q=80&w=1400&auto=format&fit=crop" alt="תפריט משקאות מותאם אישית" loading="lazy" />
+      
           <div class="body">
             <h3>תפריט מותאם</h3>
             <p>בונים תפריט לפי טעמים, כשרות, אלרגיות ותקציב – גם ללא גלוטן וללא לקטוז.</p>
@@ -329,14 +373,26 @@
     <div class="container">
       <h2 class="sec-title">גלריה</h2>
       <p class="sec-sub">הצצה לאווירה שלנו מאירועים אמיתיים. החליפו לתמונות של Alohaa Bar.</p>
-      <div class="masonry" aria-label="תמונות מהאירועים">
-        <img src="/media/event1.jpg" loading="lazy" alt="בר צבעוני באירוע" />
-        <img src="/media/event2.jpg" loading="lazy" alt="קוקטייל פירות" />
-        <img src="/media/event3.jpg" loading="lazy" alt="שייק טרופי" />
-        <img src="/media/event4.jpg" loading="lazy" alt="מבחר אלכוהול" />
-        <img src="/media/event5.jpg" loading="lazy" alt="עמדת בר" />
-        <img src="/media/event6.jpg" loading="lazy" alt="אירוע חוץ" />
-      </div>
+      <div class="gallery">
+  <!-- תמונות -->
+  <img src="media/event1.jpeg" alt="מגיע לכל מקום" />
+  <img src="media/event2.jpeg" alt="מרענן לקיץ" />
+  <img src="media/event3.jpeg" alt="המון סוגי קוקטיילים" />
+  <img src="media/event4.jpeg" alt="בר בעיצוב" />
+  <img src="media/event5.jpeg" alt="גם ללא אלכוהול" />
+  <img src="media/event6.jpeg" alt="אירוע שקיעה" />
+  <img src="media/event7.jpeg" alt="פונצ׳ים" />
+
+  <!-- סרטונים -->
+  <video controls>
+    <source src="media/video1.mp4" type="video/mp4">
+    הדפדפן שלך לא תומך בסרטונים.
+  </video>
+  <video controls>
+    <source src="media/video2.mp4" type="video/mp4">
+    הדפדפן שלך לא תומך בסרטונים.
+  </video>
+  </div>
     </div>
   </section>
 
@@ -491,4 +547,5 @@
   -->
 </body>
 </html>
+
 
